@@ -1,0 +1,29 @@
+int TRIG = 10;
+int ECO = 9;
+int lED = 3;
+int DURACION;
+int DISTANCIA;
+
+void setup(){
+    pinMode(TRIG, OUTPUT);
+    pinMode(ECO, INPUT);
+    pinMode(LED, OUTPUT);
+}
+
+void loop(){
+    digitalWrite(TRIG, HIGH);
+    delay(1);
+    digitalWrite(TRIG, LOW);
+
+    DURACION = pulseIn(ECO, HIGH);
+    DISTANCIA = DURACION / 58.2;
+
+    serial.println(DISTANCIA);
+    delay(2000);
+
+    if(DISTANCIA <= 20 && DISTANCIA => 0){
+        digitalWrite(LED, HIGH);
+        delay(1);
+        digitalWrite(LED, LOW);
+    }
+}
