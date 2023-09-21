@@ -1,0 +1,28 @@
+int laserPin = 13; // Pin connected to the laser diode
+
+int receiverPin = 2; // Pin connected to the photodiode
+int threshold = 600; // Adjust this value based on your environment
+
+void setup() {
+  pinMode(laserPin, OUTPUT);
+  pinMode(receiverPin, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  digitalWrite(laserPin, HIGH); // Turn on the laser
+  delay(1000); // Keep the laser on for 1 second
+  digitalWrite(laserPin, LOW); // Turn off the laser
+  delay(1000); // Wait for 1 second before repeating
+
+  int reading = analogRead(receiverPin);
+  Serial.println(reading);
+  
+  if (reading > threshold) {
+    Serial.println("Laser beam detected!");
+  } else {
+    Serial.println("No laser beam detected.");
+  }
+  
+  delay(200);
+}
